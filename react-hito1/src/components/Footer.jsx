@@ -1,8 +1,13 @@
 const Footer = () => {
   return (
     <footer className="footer">
-      © {new Date().getFullYear()} - Pizzería Mamma Mía! - Todos los derechos
-      reservados
+      <div className="container">
+        <div className="footer-content">
+          © {new Date().getFullYear()} - Pizzería Mamma Mía! - Todos los
+          derechos reservados
+          <a href="#">Website by BarbSmok</a>
+        </div>
+      </div>
     </footer>
   );
 };

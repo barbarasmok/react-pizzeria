@@ -1,29 +1,53 @@
 import Header from './Header';
 import CardPizza from './CardPizza';
+import ScrollingText from './ScrollingText';
 
 const Home = () => {
   return (
     <>
       <Header />
-      <div className="container mt-4">
-        <div className="row">
+      <ScrollingText />
+      <div className="container mt-4" id="cards-section">
+        <h2 className="cards-section-heading">
+          ¿Ha probado nuestros productos más populares? Hay que probarlos, ¡se
+          lo prometemos!
+        </h2>
+        <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3 mt-3">
           <CardPizza
-            name="Napolitana"
+            name="Pizza Huerta Divina"
             price={5950}
-            ingredients={['mozzarella', 'tomates', 'jamón', 'orégano']}
-            img="https://firebasestorage.googleapis.com/v0/b/apis-varias-mias.appspot.com/o/pizzeria%2Fpizza-1239077_640_cl.jpg?alt=media&token=6a9a33da-5c00-49d4-9080-784dcc87ec2c"
+            ingredients={[
+              'Masa de pizza artesanal',
+              'Salsa de tomate casera (con hierbas frescas)',
+              'Queso mozzarella fresco',
+              'Espárragos asados',
+              'Champiñones salteados',
+            ]}
+            img="src/assets/pizza-1.png"
           />
           <CardPizza
-            name="Española"
-            price={6950}
-            ingredients={['mozzarella', 'gorgonzola', 'parmesano', 'provolone']}
-            img="https://firebasestorage.googleapis.com/v0/b/apis-varias-mias.appspot.com/o/pizzeria%2Fcheese-164872_640_com.jpg?alt=media&token=18b2b821-4d0d-43f2-a1c6-8c57bc388fab"
+            name="Pizza Paraíso Pesto"
+            price={7950}
+            ingredients={[
+              'Masa de pizza de trigo integral',
+              'Pesto genovés (albahaca, piñones, ajo, parmesano, aceite de oliva)',
+              'Tomates cherry confitados',
+              'Alcachofas a la plancha',
+              'Queso de cabra desmenuzado',
+            ]}
+            img="src/assets/pizza-2.webp"
           />
           <CardPizza
-            name="Pepperoni"
-            price={6950}
-            ingredients={['mozzarella', 'pepperoni', 'orégano']}
-            img="https://firebasestorage.googleapis.com/v0/b/apis-varias-mias.appspot.com/o/pizzeria%2Fpizza-1239077_640_com.jpg?alt=media&token=e7cde87a-08d5-4040-ac54-90f6c31eb3e3"
+            name="Pizza Reina Mediterránea"
+            price={8950}
+            ingredients={[
+              'Masa de pizza fina y crujiente',
+              'Puré de aceitunas negras',
+              'Queso feta griego',
+              'Pimientos rojos asados',
+              'Corazones de alcachofa marinados',
+            ]}
+            img="src/assets/pizza-3.webp"
           />
         </div>
       </div>

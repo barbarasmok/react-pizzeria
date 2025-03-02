@@ -1,4 +1,26 @@
+import { useState, useEffect } from 'react';
+import { FaBars } from 'react-icons/fa'; // Import the hamburger icon
+
 const Navbar = () => {
+  const [isSticky, setIsSticky] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false); // State for menu open/close
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setIsSticky(true);
+      } else {
+        setIsSticky(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
   const total = 25000;
   const token = false;
 
@@ -9,13 +31,23 @@ const Navbar = () => {
     });
   };
 
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen); // Toggle the menu state
+  };
+
   return (
-    <nav className="navbar">
+    <nav className={`navbar ${isSticky ? 'sticky' : ''}`}>
       <div className="container d-flex justify-content-between align-items-center">
         <a className="navbar-brand text-white" href="#">
-          Pizzería Mamma Mía!
+          Mamma Mía!
         </a>
-        <div className="d-flex">
+
+        {/* Hamburger Menu Icon for Smaller Screens */}
+        <button className="navbar-toggle" onClick={toggleMenu}>
+          <FaBars />
+        </button>
+
+        <div className={`navbar-links ${isMenuOpen ? 'active' : ''}`}>
           <button className="btn btn-outline-light me-2">Home</button>
           {token ? (
             <>
