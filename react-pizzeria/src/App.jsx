@@ -1,14 +1,24 @@
+import { useState } from 'react';
 import Navbar from './components/Navbar';
-import Home from './components/Home';
-import FollowUs from './components/FollowUs'; // Import the FollowUs component
 import Footer from './components/Footer';
+import Register from './components/Register';
+import Login from './components/Login';
 
 function App() {
+  const [showRegister, setShowRegister] = useState(true);
+
   return (
-    <div className="d-flex flex-column min-vh-100">
+    <div>
       <Navbar />
-      <Home />
-      <FollowUs />
+      <div className="switch">
+        {showRegister ? <Register /> : <Login />}
+        <button
+          className="btn btn-secondary btn-switch my-3"
+          onClick={() => setShowRegister(!showRegister)}
+        >
+          {showRegister ? 'Switch to Login' : 'Switch to Register'}
+        </button>
+      </div>
       <Footer />
     </div>
   );
