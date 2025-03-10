@@ -30,7 +30,7 @@ const Home = () => {
             price={7950}
             ingredients={[
               'Masa de pizza de trigo integral',
-              'Pesto genovés (albahaca, piñones, ajo, parmesano, aceite de oliva)',
+              'Pesto con ajo y aceute de oliva',
               'Tomates cherry confitados',
               'Alcachofas a la plancha',
               'Queso de cabra desmenuzado',
