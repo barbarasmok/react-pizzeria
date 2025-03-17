@@ -1,8 +1,36 @@
+import PropTypes from 'prop-types';
 import Header from './Header';
+import { pizzas } from './Pizzas';
 import CardPizza from './CardPizza';
 import ScrollingText from './ScrollingText';
 
-const Home = () => {
+const Home = ({ addToCart }) => {
+  return (
+    <>
+      <Header />
+      <ScrollingText />
+      <div className="container mt-4" id="cards-section">
+        <h2 className="cards-section-heading">
+          ¿Ha probado nuestros productos más populares? ¡Se lo prometemos!
+        </h2>
+        <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3 mt-3">
+          {pizzas.map(pizza => (
+            <CardPizza key={pizza.id} pizza={pizza} addToCart={addToCart} />
+          ))}
+        </div>
+      </div>
+    </>
+  );
+};
+
+// Add prop validation
+Home.propTypes = {
+  addToCart: PropTypes.func.isRequired,
+};
+
+export default Home;
+
+/* const Home = () => {
   return (
     <>
       <Header />
@@ -55,4 +83,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Home;*/

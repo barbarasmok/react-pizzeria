@@ -1,24 +1,32 @@
 import { useState } from 'react';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
-import Register from './components/Register';
-import Login from './components/Login';
+import Home from './components/Home';
+import Cart from './components/Cart';
+
+//import Register from './components/Register';
+//import Login from './components/Login';
 
 function App() {
-  const [showRegister, setShowRegister] = useState(true);
+  const [cart, setCart] = useState([]);
+
+  const addToCart = pizza => {
+    setCart(prevCart => {
+      const existingPizza = prevCart.find(p => p.id === pizza.id);
+      if (existingPizza) {
+        return prevCart.map(p =>
+          p.id === pizza.id ? { ...p, qty: p.qty + 1 } : p
+        );
+      }
+      return [...prevCart, { ...pizza, qty: 1 }];
+    });
+  };
 
   return (
     <div>
       <Navbar />
-      <div className="switch">
-        {showRegister ? <Register /> : <Login />}
-        <button
-          className="btn btn-secondary btn-switch my-3"
-          onClick={() => setShowRegister(!showRegister)}
-        >
-          {showRegister ? 'Switch to Login' : 'Switch to Register'}
-        </button>
-      </div>
+      <Home addToCart={addToCart} />
+      <Cart cart={cart} updateCart={setCart} />
       <Footer />
     </div>
   );

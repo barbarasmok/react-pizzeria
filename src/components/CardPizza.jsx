@@ -1,46 +1,39 @@
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types'; // Import PropTypes
 
-const CardPizza = ({ name, price, ingredients, img }) => {
-  const titleWords = name.split(' ');
-
+const CardPizza = ({ pizza, addToCart }) => {
   return (
     <div className="cardsBlock">
-      <div className="card">
-        <div className="card-title">
-          {titleWords.map((word, index) => (
-            <span key={index}>
-              {word}
-              <br />
-            </span>
-          ))}
-        </div>
-        <img src={img} className="card-img-circular" alt={name} />
+      <div className="card" style={{ width: '20rem' }}>
+        <img src={pizza.img} className="card-img-top" alt={pizza.name} />
         <div className="card-body">
-          <p className="card-text">{ingredients.join(' , ')}</p>
-          <p className="card-price">
-            <strong>
-              Precio:{' '}
-              {price.toLocaleString('es-CL', {
-                style: 'currency',
-                currency: 'CLP',
-              })}
-            </strong>
+          <h5 className="card-title">{pizza.name}</h5>
+          <p className="card-text">
+            Precio: ${pizza.price.toLocaleString('es-CL')}
           </p>
-          <div className="d-flex justify-start btnGroup">
-            <button className="btn btn-primary">Ver más</button>
-            <button className="btn btn-success">Añadir</button>
-          </div>
+          <ul className="card-ingredients">
+            {pizza.ingredients.map((ing, index) => (
+              <li key={index}>{ing}</li>
+            ))}
+          </ul>
+          <button className="btn btn-primary" onClick={() => addToCart(pizza)}>
+            Añadir
+          </button>
         </div>
       </div>
     </div>
   );
 };
 
+// Define prop validation
 CardPizza.propTypes = {
-  name: PropTypes.string.isRequired,
-  price: PropTypes.number.isRequired,
-  ingredients: PropTypes.arrayOf(PropTypes.string).isRequired,
-  img: PropTypes.string.isRequired,
+  pizza: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+    ingredients: PropTypes.arrayOf(PropTypes.string).isRequired,
+    img: PropTypes.string.isRequired,
+  }).isRequired,
+  addToCart: PropTypes.func.isRequired,
 };
 
 export default CardPizza;
