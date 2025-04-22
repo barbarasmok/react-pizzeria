@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import Navbar from './components/Navbar';
+import Header from './components/Header';
+import ScrollingText from './components/ScrollingText.jsx';
 import Footer from './components/Footer';
 import Home from './components/Home';
 import Cart from './components/Cart';
-
-//import Register from './components/Register';
-//import Login from './components/Login';
+import { pizzas } from './components/pizzas.js'; // Import pizzas from the correct location
 
 function App() {
   const [cart, setCart] = useState([]);
@@ -22,11 +22,24 @@ function App() {
     });
   };
 
+  const updateCart = (pizzaId, qty) => {
+    setCart(prevCart => {
+      if (qty === 0) {
+        return prevCart.filter(pizza => pizza.id !== pizzaId); // Remove pizza if qty is 0
+      }
+      return prevCart.map(pizza =>
+        pizza.id === pizzaId ? { ...pizza, qty } : pizza
+      );
+    });
+  };
+
   return (
     <div>
       <Navbar />
-      <Home addToCart={addToCart} />
-      <Cart cart={cart} updateCart={setCart} />
+      <Header />
+      <ScrollingText />
+      <Home pizzas={pizzas} addToCart={addToCart} />
+      <Cart cart={cart} updateCart={updateCart} />
       <Footer />
     </div>
   );

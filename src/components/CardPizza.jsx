@@ -1,9 +1,9 @@
-import PropTypes from 'prop-types'; // Import PropTypes
+import PropTypes from 'prop-types';
 
 const CardPizza = ({ pizza, addToCart }) => {
   return (
     <div className="cardsBlock">
-      <div className="card" style={{ width: '20rem' }}>
+      <div className="card">
         <img src={pizza.img} className="card-img-top" alt={pizza.name} />
         <div className="card-body">
           <h5 className="card-title">{pizza.name}</h5>
@@ -24,7 +24,6 @@ const CardPizza = ({ pizza, addToCart }) => {
   );
 };
 
-// Define prop validation
 CardPizza.propTypes = {
   pizza: PropTypes.shape({
     id: PropTypes.number.isRequired,
